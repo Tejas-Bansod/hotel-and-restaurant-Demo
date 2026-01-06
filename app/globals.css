@@ -1,1 +1,110 @@
-@import "tailwindcss";
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+@layer theme {
+  :root {
+    /* Indian Color Palette - Warm Spices */
+    --color-saffron: #FF9933;
+    --color-turmeric: #FFD700;
+    --color-chili: #DC143C;
+    --color-herb: #228B22;
+    --color-earth: #8B4513;
+    --color-cardamom: #6B8E23;
+    --color-cream: #FFF8DC;
+    --color-terracotta: #E2725B;
+
+    /* Neutrals */
+    --color-dark: #2C1810;
+    --color-gray: #6B5D52;
+    --color-light-gray: #F5F1ED;
+    --color-white: #FFFFFF;
+
+    /* Fonts */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Poppins', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-dark);
+    background-color: var(--color-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+@layer utilities {
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-light-gray);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-saffron);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-earth);
+  }
+
+  /* Utility Classes */
+  .container-custom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      padding: 0 2rem;
+    }
+  }
+
+  .section-padding {
+    padding: 4rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding: 6rem 0;
+    }
+  }
+
+  /* Indian Pattern Background */
+  .indian-pattern {
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 153, 51, 0.03) 10px, rgba(255, 153, 51, 0.03) 20px),
+      repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(139, 69, 19, 0.03) 10px, rgba(139, 69, 19, 0.03) 20px);
+  }
+}
