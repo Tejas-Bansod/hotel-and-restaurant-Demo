@@ -5,12 +5,13 @@ import Order from '@/models/Order';
 // GET single order
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await dbConnect();
 
-        const order = await Order.findById(params.id);
+        const { id } = await params;
+        const order = await Order.findById(id);
 
         if (!order) {
             return NextResponse.json(
@@ -40,15 +41,16 @@ export async function GET(
 // PUT update order status (admin only)
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await dbConnect();
 
+        const { id } = await params;
         const body = await request.json();
 
         const order = await Order.findByIdAndUpdate(
-            params.id,
+            id,
             { status: body.status },
             { new: true, runValidators: true }
         );
